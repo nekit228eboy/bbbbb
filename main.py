@@ -5,12 +5,14 @@ from telebot import types
 
 import telebot
 
-TOKEN = 'ВАШ ТОКЕН'
+TOKEN = '5215665222:AAEH6xnAxoxlToTffJYrDPjFbh7PWjyagts'
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
 
-#КОД ТЕЛЕБОТА
+@bot.message_handler(commands=['start'])
+def handle_command(message):
+  bot.send_message(message.chat.id, 'Привет, зачем же ты меня призвал?') 
 
 
 @server.route('/' + TOKEN, methods=['POST'])
@@ -23,7 +25,7 @@ def getMessage():
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url='https://<Название_вашего_хероку_приложения>.herokuapp.com/' + TOKEN)
+    bot.set_webhook(url='https://nekit228eboy.herokuapp.com/' + TOKEN)
     return "!", 200
 
 if __name__ == "__main__":
